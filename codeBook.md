@@ -170,4 +170,3 @@ These numeric variables represent the mean of time domain gravity-induced change
 ##Sources
 Data came from the study described here: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
 The actual data is available here: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
-
