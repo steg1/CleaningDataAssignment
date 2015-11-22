@@ -29,15 +29,6 @@ run_analysis <- function() {
     X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")
     Y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")
     subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
-    body_acc_x_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_acc_x_train.txt")
-    body_acc_y_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_acc_y_train.txt")    
-    body_acc_z_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_acc_z_train.txt")
-    body_gyro_x_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_gyro_x_train.txt")
-    body_gyro_y_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_gyro_y_train.txt")
-    body_gyro_z_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/body_gyro_z_train.txt")
-    total_acc_x_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/total_acc_x_train.txt")
-    total_acc_y_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/total_acc_y_train.txt")    
-    total_acc_z_train <- read.table("./UCI HAR Dataset/train/Inertial Signals/total_acc_z_train.txt")
     
     X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
     Y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
@@ -82,6 +73,7 @@ run_analysis <- function() {
     X3$`YLabeled$activity.type` <- NULL
  
     #create data.frame grouped by the subject ID and activity per requirement 5
+    # thanks to Lesley Murphy's forum post 21 NOV for the summarize_each tip.
     X4 <- X3 %>% group_by(fullName) %>% summarize_each(funs(mean))
     
     #label data appropriately with descriptive feature names per requirement 4
@@ -105,8 +97,7 @@ run_analysis <- function() {
                       "angle.t.Body.Gyro.Mean.gravity.Mean", "angle.t.Body.Gyro.Jerk.Mean.gravity.Mean", "angle.X.gravity.Mean", "angle.Y.gravity.Mean", 
                       "angle.Z.gravity.Mean")
     
-
-  
+    
     #output tidy data per instructions
     write.table(X4,"./tidy_data1.txt",row.name=FALSE)
   
